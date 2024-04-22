@@ -21,8 +21,8 @@ public class ProductionHouseService {
          productionHouse.setName(productionHouseEntryDto.getName());
          productionHouse.setRatings(0);
          productionHouse.setWebSeriesList(new ArrayList<>());
-         productionHouseRepository.save(productionHouse);
-        return  null;
+         ProductionHouse productionHouse1 = productionHouseRepository.save(productionHouse);
+         return  productionHouse1.getId();
     }
 
 
