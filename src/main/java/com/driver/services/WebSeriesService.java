@@ -36,7 +36,8 @@ public class WebSeriesService {
         int productionHouseId =  webSeriesEntryDto.getProductionHouseId();
         ProductionHouse productionHouse = productionHouseRepository.findById(productionHouseId).get();
         double productionHouseRating = productionHouse.getRatings();
-        double newRating = (productionHouseRating*webSeriesList.size() + webSeriesEntryDto.getRating())/(webSeriesList.size()+1);
+        int len = productionHouse.getWebSeriesList().size();
+        double newRating = (productionHouseRating*len + webSeriesEntryDto.getRating())/(len+1);
         productionHouse.setRatings(newRating);
 
         WebSeries webSeries = new WebSeries();
