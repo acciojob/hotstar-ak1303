@@ -27,12 +27,13 @@ public class WebSeriesService {
         //Dont forget to save the production and webseries Repo
 
 
-        int productionHouseId =  webSeriesEntryDto.getProductionHouseId();
-        ProductionHouse productionHouse = productionHouseRepository.findById(productionHouseId).get();
         if(webSeriesRepository.findBySeriesName(webSeriesEntryDto.getSeriesName()) != null)
         {
             throw new Exception("Series is already present");
         }
+        int productionHouseId =  webSeriesEntryDto.getProductionHouseId();
+        ProductionHouse productionHouse = productionHouseRepository.findById(productionHouseId).get();
+        //new Rating calculation
         double productionHouseRating = productionHouse.getRatings();
         int len = productionHouse.getWebSeriesList().size();
         double newRating = (productionHouseRating*len + webSeriesEntryDto.getRating())/(len+1);
